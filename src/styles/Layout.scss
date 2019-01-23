@@ -1,0 +1,134 @@
+$font-primary: 'Poppins', sans-serif;
+$font-secondary: 'Roboto', sans-serif;
+$color-blue: #0984e3;
+$color-purple: #6c5ce7;
+$color-green: #00b894;
+$color-white: #f7fafb;
+$dim-shadow: #d7dee0;
+$strong-shadow: #afb2b4;
+
+* {
+    font-family: $font-primary;
+}
+
+.container {
+    display: grid;
+    grid-template-columns: 250px 1fr;
+    height: 100vh;
+    transition: .3s;
+    & .panel-left {
+        background: $color-white;
+        & .menu {
+            display: grid;
+            grid-template-columns: 150px;
+            justify-content: center;
+            grid-row-gap: 40px;
+            list-style: none;
+            margin-top: 50px;
+            & li {
+                cursor: pointer;
+                text-align: center;
+                transition: color .3s ease;
+                &:nth-of-type(1) {
+                    font-size: 1.4em;
+                    font-weight: bold;
+                }
+                &:hover{
+                    color: $color-blue;
+                }
+            }
+        }
+    }
+    & .panel-right {
+        display: grid;
+        grid-template-rows: 128px 1fr;
+        box-shadow: -8px 0 10px $dim-shadow;
+        & .header {
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+            & .header-item {
+                font-size: 1.6em;
+                font-weight: bold;
+            }
+        }
+        & .contend {
+            display: grid;
+            grid-template: repeat(3, 120px) / repeat(3, minmax(140px, 300px));
+            grid-template-areas: "about design soccial-network"
+                                 "galery projects ."
+                                 "galery  other .";
+            grid-gap: 50px;
+            align-content: center;
+            justify-content: space-evenly;
+            padding: 15px;
+            & div{
+                box-shadow: 0 8px 10px $dim-shadow;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                cursor: pointer;
+                transition: box-shadow .25s ease;
+                display: grid;
+                grid-template: 128px 1fr / 70px 1fr 70px;
+                & p {
+                    &:nth-of-type(1) {
+                        text-align: center;
+                        grid-column: 2 / 3;
+                        font-size: 1.2em;
+                        font-weight: bold;
+                    }
+                    &:nth-of-type(2) {
+                        font-weight: 400;
+                        grid-column: 2 / 3;
+                        text-align: justify;
+                        font-family: 'Roboto', sans-serif;
+                    }
+                }
+                &:hover {
+                    box-shadow: 0 15px 30px $strong-shadow;
+                }
+                &:nth-of-type(1){
+                    border-left: 5px solid $color-purple;
+                    grid-area: about;
+                }
+                &:nth-of-type(2){
+                    border-left: 5px solid $color-blue;
+                    grid-area: design;
+                }
+                &:nth-of-type(3){
+                    border-left: 5px solid $color-green;
+                    grid-area: soccial-network;
+                }
+                &:nth-of-type(4){
+                    grid-area: galery;
+                }
+                &:nth-of-type(5){
+                    grid-area: projects;
+                }
+                &:nth-of-type(6){
+                    grid-area: other;
+                }
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 1024px) {
+    .container{
+        display: grid;
+        grid-template-columns: 1fr;
+        & .panel-left {
+            display: none;
+        }
+        & .panel-right{
+            box-shadow: none;
+            & .contend {
+                grid-template-areas: "about design soccial-network"
+                                 "galery galery projects"
+                                 "galery galery other";
+                grid-gap: 20px;
+            }
+        }
+    }
+}
